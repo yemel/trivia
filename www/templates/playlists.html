@@ -1,8 +1,11 @@
-<ion-view view-title="Playlists">
+<ion-view view-title="Trivia">
   <ion-content>
+    <div class="question">
+      <img ng-src="./img/{{question.image}}">
+    </div>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
+      <ion-item ng-repeat="option in question.options" href="#/app/playlists/{{playlist.id}}">
+        {{option.name | capitalize}}
       </ion-item>
     </ion-list>
   </ion-content>

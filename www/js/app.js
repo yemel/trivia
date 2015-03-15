@@ -1,5 +1,12 @@
 
-angular.module('trivia', ['ionic', 'trivia.controllers'])
+angular.module('trivia', [
+  'ionic',
+  'angular-capitalize-filter',
+
+  'trivia.controllers',
+  'trivia.services',
+  'trivia.data',
+  ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -47,7 +54,7 @@ angular.module('trivia', ['ionic', 'trivia.controllers'])
       views: {
         'menuContent': {
           templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+          controller: 'QuestionCtrl'
         }
       }
     })
