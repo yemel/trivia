@@ -22,34 +22,31 @@ angular.module('trivia', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.constant('totalQuestions', 10)
+
+.config(function($stateProvider, $urlRouterProvider, totalQuestions) {
   $stateProvider
 
-  .state('app', {
-    url: "/app",
-    abstract: true,
-    templateUrl: "templates/menu.html",
-    controller: 'AppCtrl'
+  .state('start', {
+    url: "/start",
+    templateUrl: "templates/start.html",
+    controller: 'StartCtrl'
   })
 
-  .state('app.browse', {
-    url: "/browse",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/browse.html"
-      }
-    }
-  })
-
-  .state('app.question', {
-    url: "/question",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/playlists.html",
-        controller: 'QuestionCtrl'
-      }
-    }
+  .state('end', {
+    url: "/end",
+    templateUrl: "templates/end.html",
+    controller: 'EndCtrl'
   });
+
+  for (var i = 0 ; i < totalQuestions ; i++) {
+    $stateProvider.state('question' + i, {
+      url: "/question" + i,
+      templateUrl: "templates/question.html",
+      controller: 'QuestionCtrl'
+    });
+  }
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/question');
+  $urlRouterProvider.otherwise('/start');
 });

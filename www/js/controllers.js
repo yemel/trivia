@@ -33,16 +33,38 @@ angular.module('trivia.controllers', [])
   };
 })
 
-.controller('GameCtrl', function($scope, GameService) {
-  $scope.question = GameService.getQuestion();
+
+.controller('StartCtrl', function($scope, GameService) {
+
 })
 
-.controller('QuestionCtrl', function($scope, $stateParams, $state, GameService) {
-  $scope.question = GameService.getQuestion();
+.controller('EndCtrl', function($scope, GameService) {
+
+})
+
+.controller('QuestionCtrl', function($scope, $stateParams, $state, $timeout, GameService, totalQuestions) {
+  var currentQuestion = parseInt($state.current.name.slice('question'.length));
+
+  console.log(GameService);
+
+  $scope.question = GameService.getQuestion(currentQuestion);
+
+  $scope.currentQuestion = currentQuestion;
+  $scope.totalQuestions = totalQuestions;
 
   $scope.answer = function(option) {
-    console.log('Reload');
-    $state.go('browser');
+    if ($scope.clicked) return;
+    $scope.clicked = option;
+
+    GameService.selectedOption(currentQuestion, option);
+
+    $timeout(function(){
+      var next = currentQuestion + 1;
+      if (next < totalQuestions) return $state.go('question' + next);
+
+      $state.go('end');
+    }, 500);
+    
   };
 })
 

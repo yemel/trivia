@@ -1,0 +1,17 @@
+<ion-view view-title="Trivia">
+  <ion-content>
+    <div class="question">
+      <img ng-src="./img/{{question.image}}"><br>
+      <span>{{currentQuestion + 1}} / {{totalQuestions}}</span>
+    </div>
+    <ion-list>
+      <ion-item
+        ng-repeat="option in question.options"
+        ng-click="answer(option)"
+        ng-disabled="clicked"
+        ng-class="{correct: clicked && option.answer, incorrect: option == clicked && !option.answer}">
+        {{option.name | capitalize}} - {{ option.answer }}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

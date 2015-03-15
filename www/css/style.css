@@ -1,5 +1,11 @@
-/* Empty. Add your own CSS if you like */
-
 .question {
   text-align: center;
+}
+
+.item.correct {
+  background-color: green;
+}
+
+.item.incorrect {
+  background-color: red;
 }
