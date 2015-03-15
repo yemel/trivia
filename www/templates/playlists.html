@@ -4,7 +4,7 @@
       <img ng-src="./img/{{question.image}}">
     </div>
     <ion-list>
-      <ion-item ng-repeat="option in question.options" href="#/app/playlists/{{playlist.id}}">
+      <ion-item ng-repeat="option in question.options" ng-click="answer(option)">
         {{option.name | capitalize}}
       </ion-item>
     </ion-list>

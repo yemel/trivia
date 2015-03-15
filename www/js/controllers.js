@@ -33,8 +33,17 @@ angular.module('trivia.controllers', [])
   };
 })
 
-.controller('QuestionCtrl', function($scope, GameService) {
+.controller('GameCtrl', function($scope, GameService) {
   $scope.question = GameService.getQuestion();
+})
+
+.controller('QuestionCtrl', function($scope, $stateParams, $state, GameService) {
+  $scope.question = GameService.getQuestion();
+
+  $scope.answer = function(option) {
+    console.log('Reload');
+    $state.go('browser');
+  };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
